@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GMod Server Loading Screen</title>
+  <style>
+    body {
+      background-color: rgb(20, 20, 22);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: fadeIn 1s ease;
+    }
+
+    .logo {
+      width: 150px;
+      height: 150px;
+      margin-bottom: 20px;
+      animation: rotate 2s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      animation: scaleUp 1s ease;
+    }
+
+    @keyframes scaleUp {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease;
+    }
+
+    .progress-bar {
+      width: 80%;
+      max-width: 400px;
+      height: 20px;
+      background-color: rgb(35, 35, 40);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: #7f7;
+      transition: width 0.5s ease;
+      animation: progressBarFill 2s linear forwards;
+    }
+
+    @keyframes progressBarFill {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="logo" src="logo.png" alt="Server Logo">
+    <h1>Titanium Networks</h1>
+    <p>Loading...</p>
+    <div class="progress-bar">
+      <div class="progress-bar-fill"></div>
+    </div>
+  </div>
+
+  <script>
+    // Simulating progress
+    let progress = 0;
+    const progressBarFill = document.querySelector('.progress-bar-fill');
+
+    const simulateProgress = setInterval(() => {
+      progress += Math.random() * 10;
+
+      if (progress >= 100) {
+        clearInterval(simulateProgress);
+        progressBarFill.style.width = '100%';
+        // Redirect to the main page or hide the loading screen
+        window.location.href = '#'; // Replace with your desired URL
+      } else {
+        progressBarFill.style.width = `${progress}%`;
+      }
+    }, 500);
+  </script>
+</body>
+</html>
