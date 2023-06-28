@@ -6,9 +6,9 @@
   <title>GMod Server Loading Screen</title>
   <style>
     body {
-      background-color: rgb(20, 20, 22);
+      background-color: #1a1c21;
       color: #fff;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
       margin: 0;
       padding: 0;
@@ -24,21 +24,26 @@
     }
 
     .logo {
-      width: 150px;
-      height: 150px;
-      margin-bottom: 20px;
-      animation: rotate 2s linear infinite;
+      width: 200px;
+      height: 200px;
+      margin-bottom: 30px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      animation: spin 2s linear infinite;
     }
 
-    @keyframes rotate {
+    @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
 
     h1 {
-      font-size: 32px;
+      font-size: 48px;
       margin-bottom: 10px;
+      letter-spacing: 4px;
       animation: scaleUp 1s ease;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
     @keyframes scaleUp {
@@ -47,25 +52,29 @@
     }
 
     p {
-      font-size: 18px;
-      margin-bottom: 30px;
+      font-size: 24px;
+      margin-bottom: 40px;
       animation: fadeIn 1s ease;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
 
     .progress-bar {
       width: 80%;
       max-width: 400px;
       height: 20px;
-      background-color: rgb(35, 35, 40);
+      background-color: rgba(255, 255, 255, 0.2);
       border-radius: 10px;
       overflow: hidden;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
     }
 
     .progress-bar-fill {
       height: 100%;
-      background-color: #7f7;
+      background-color: #4cd964;
       transition: width 0.5s ease;
       animation: progressBarFill 2s linear forwards;
+      border-radius: 10px;
     }
 
     @keyframes progressBarFill {
@@ -76,9 +85,10 @@
 </head>
 <body>
   <div class="container">
-    <img class="logo" src="logo.png" alt="Server Logo">
+    <img class="logo" src="img/logo.png" alt="Server Logo">
     <h1>Titanium Networks</h1>
-    <p>Loading...</p>
+  </br>
+</br>
     <div class="progress-bar">
       <div class="progress-bar-fill"></div>
     </div>
