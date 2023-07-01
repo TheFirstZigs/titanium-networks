@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <title>Titanium Networks</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.ico">
     <style>
         body {
             background-color: rgb(20, 20, 22);
@@ -75,6 +76,15 @@
             background-position: 50% 50%;
             z-index: -1;
         }
+        
+        .copyright {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #888;
+        }
     </style>
 </head>
 <body>
@@ -82,11 +92,16 @@
 <div class="container">
     <div class="logo"></div>
     <div class="server-name">Titanium Networks</div>
-    <div class="description">The superior server choice</div>
+    <div id="description" class="description"></div> <!-- Updated: Added an ID to target the description element -->
     <a href="#" class="button"><i class="fab fa-shopify"></i> Store</a>
     <a href="https://titanium-networks.noclip.me/" class="button"><i class="fas fa-comments"></i> Forums</a>
     <a href="https://discord.gg/kRDenkvVKK" class="button"><i class="fab fa-discord"></i> Discord</a>
 </div>
+
+<p class="copyright">&copy; 
+<script>
+    document.write(new Date().getFullYear());
+</script> Titanium Networks. All rights reserved.</p>
 
 <script>
     particlesJS("particles-js", {
@@ -128,29 +143,64 @@
             }
         },
         interactivity: {
-        detect_on: "canvas",
-        events: {
-            onhover: {
-                enable: false,
-                mode: "repulse"
+            detect_on: "canvas",
+            events: {
+                onhover: {
+                    enable: false,
+                    mode: "repulse"
+                },
+                onmousemove: {
+                    enable: true,
+                    mode: "grab"
+                }
             },
-            onmousemove: {
-                enable: true,
-                mode: "grab"
-            }
-        },
-        modes: {
-            grab: {
-                distance: 200,
-                line_linked: { opacity: 1 }
-            },
-            repulse: {
-                distance: 100,
-                duration: 0.4
+            modes: {
+                grab: {
+                    distance: 200,
+                    line_linked: { opacity: 1 }
+                },
+                repulse: {
+                    distance: 100,
+                    duration: 0.4
+                }
             }
         }
+    });
+
+    const descriptionElement = document.getElementById("description");
+    const messages = ["The superior server choice", "", ""];
+    let currentMessageIndex = 0;
+
+    function typeWriter() {
+        const message = messages[currentMessageIndex];
+        let currentIndex = 0;
+        descriptionElement.innerHTML = "";
+
+        function type() {
+            if (currentIndex < message.length) {
+                descriptionElement.innerHTML += message.charAt(currentIndex);
+                currentIndex++;
+                setTimeout(type, 100); // Typing speed: 100ms
+            } else {
+                setTimeout(erase, 2000); // Wait for 2 seconds before erasing the message
+            }
+        }
+
+        function erase() {
+            if (currentIndex >= 0) {
+                descriptionElement.innerHTML = message.substring(0, currentIndex);
+                currentIndex--;
+                setTimeout(erase, 50); // Erasing speed: 50ms
+            } else {
+                currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+                setTimeout(typeWriter, 0); // Switch to the next message after 3 seconds
+            }
+        }
+
+        type();
     }
-});
+
+    typeWriter();
 </script>
 </body>
 </html>
